@@ -55,6 +55,7 @@ jobs:
         run: |
           mkdir dist
           tar xf my-app.tar -C dist/
+          ll
         working-directory: .
 
       - name: 'Deploy to Azure Web App'
