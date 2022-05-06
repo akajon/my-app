@@ -26,12 +26,17 @@ jobs:
           npm install
           npm run build --prod
         working-directory: .
+      
+      - name: Zip dist folder
+        run: |
+          tar cf my-app.tar dist/
+        working-directory: .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: ./my-app.tar
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,6 +51,12 @@ jobs:
         with:
           name: node-app
 
+      - name: Unzip my-app.tar
+        run: |
+          mkdir dist
+          tar xf my-app.tar -C dist/
+        working-directory: .
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -53,4 +64,4 @@ jobs:
           app-name: 'whosatwork'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FC0C69809093452A8943C9439D2E029F }}
-          package: .
+          package: ./dist/wep-app
