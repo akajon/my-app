@@ -55,7 +55,7 @@ jobs:
         run: |
           mkdir dist
           tar xf /home/runner/work/my-app/my-app/my-app.tar -C dist/
-          ls
+          echo 'ls dist folder:'
           ls dist
         working-directory: .
 
