@@ -66,4 +66,4 @@ jobs:
           app-name: 'whosatwork'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FC0C69809093452A8943C9439D2E029F }}
-          package: ./dist/wep-app
+          package: ./dist/my-app
