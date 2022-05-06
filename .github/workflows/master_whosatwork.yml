@@ -54,7 +54,7 @@ jobs:
       - name: Unzip my-app.tar
         run: |
           mkdir dist
-          tar xf /home/runner/work/my-app/my-app/my-app.tar -C dist/
+          tar xf /home/runner/work/my-app/my-app/my-app.tar -C .
           echo 'ls dist folder:'
           ls dist
         working-directory: .
