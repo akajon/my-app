@@ -1,10 +1,10 @@
-<form>
+<form [formGroup] = 'form' (submit) = 'submit()'>
 
     <h1 class="h3 mb-3 fw-normal">Please sign in:</h1>
   
-    <input type="username" class="form-control" id="floatingInput" placeholder="Username" required> 
+    <input formControlName = 'email' type="username" class="form-control" id="floatingInput" placeholder="Email" required> 
   
-    <input type="password" class="form-control" placeholder="Password" required>
+    <input formControlName = 'password' type="password" class="form-control" placeholder="Password" required>
   
     <input type="checkbox" value="remember-me"> Remember me
   
