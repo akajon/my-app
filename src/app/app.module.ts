@@ -8,7 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ListaComponent } from './lista/lista.component';
+import { SharedService } from './shared.service';
+  
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     RegisterComponent,
     NavigationComponent,
+    ListaComponent,
 
   ],
   imports: [
@@ -24,9 +28,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    //HttpClientModule
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,22 @@
+<p>lista works!</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>EmployeeNume</th>
+            <th>EmployeePrenume</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of EmployeeList">
+            <td>{{dataItem.EmployeeNume}}</td>
+            <td>{{dataItem.EmployeePrenume}}</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
