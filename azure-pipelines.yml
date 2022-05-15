@@ -19,7 +19,7 @@ jobs:
     steps:
     - task: NuGetToolInstaller@1
 
-  - job: nuget-command
+  - job: nuget_command
     steps:
     - task: NuGetCommand@2
       inputs:
