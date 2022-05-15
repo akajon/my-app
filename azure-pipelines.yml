@@ -3,6 +3,8 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+name: Build and deploy .Net app to Azure Web App
+
 trigger:
 - master
 
@@ -15,26 +17,26 @@ variables:
   buildConfiguration: 'Release'
 
 jobs:
-  - job: install_nuget
+  install_nuget:
     steps:
-    - task: NuGetToolInstaller@1
+    - uses: NuGetToolInstaller@1
 
-  - job: nuget_command
+  restore_sln:
     steps:
-    - task: NuGetCommand@2
+    - uses: NuGetCommand@2
       inputs:
         restoreSolution: '$(solution)'
-  - job: build
+  build:
     steps:
-    - task: VSBuild@1
+    - uses: VSBuild@1
       inputs:
         solution: '$(solution)'
         msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-  - job: test
+  test:
     steps:
-    - task: VSTest@2
+    - uses: VSTest@2
       inputs:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
