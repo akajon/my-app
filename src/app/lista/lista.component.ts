@@ -10,8 +10,8 @@ import{Employee} from '../core/models/EmployeeDTO';
 })
 export class ListaComponent {
 
-  EmployeeList:Employee[]=[{id: 1, Nume: 'Oprea', Prenume:'Marius'}];
-
+  EmployeeList:Employee[]=[];
+  searchName:string='';
   ModalTitle:string='';
   ActivateAddEmp:boolean=false;
   
@@ -20,7 +20,7 @@ export class ListaComponent {
    }
 
   ngOnInit(): void {
-    this.refreshEmpList();
+    this.refreshEmpList(this);
   }
 
   addClick(){
@@ -30,20 +30,21 @@ export class ListaComponent {
 
   deleteClick(item: Employee){
     if(confirm("Are you sure?")){
-        this.service.deleteEmployee(item.id).subscribe(data=>{
+        this.service.deleteEmployee(item.Id).subscribe(data=>{
           alert(data.toString());
-          this.refreshEmpList();
+          this.refreshEmpList(this);
         })
     }
   }
 
   closeClick(){
     this.ActivateAddEmp=false;
-    this.refreshEmpList();
+    this.refreshEmpList(this);
   }
 
-  refreshEmpList(){
-    this.service.getEmpList().subscribe(data=>{
+  refreshEmpList(thisalt: any){
+    var text= (<HTMLInputElement>document.getElementById("search-field")).value;
+    this.service.getEmpList(text).subscribe(data=>{
       this.EmployeeList=data;
     });
   }
