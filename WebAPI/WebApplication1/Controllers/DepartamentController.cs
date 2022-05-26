@@ -16,8 +16,8 @@ namespace WebApplication1.Controllers
         public HttpResponseMessage Get()
         {
             string query = @"
-                    select Id, CNP_Sef, Denumire, Descriere from
-                    dbo.Departamente
+                    select id, usr_id, dep_name, dep_description from
+                    dbo.departmensts
                     ";
             DataTable table = new DataTable();
             using (var con = new SqlConnection(ConfigurationManager.
@@ -37,12 +37,12 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        insert into dbo.Departamente values
+                        insert into dbo.departmensts values
                         (
-                        '" + dep.Id + @"'
-                        '" + dep.CNP_Sef + @"'
-                        '" + dep.Denumire + @"'
-                        '" + dep.Descriere + @"'
+                        '" + dep.id + @"'
+                        '" + dep.usr_id + @"'
+                        '" + dep.dep_name + @"'
+                        '" + dep.dep_description + @"'
                         )
                         ";
                 DataTable table = new DataTable();
@@ -68,9 +68,9 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        update dbo.Departamente set Descriere=
-                        '" + dep.Descriere + @"'
-                        where Id=" + dep.Id + @"
+                        update dbo.departmensts set Descriere=
+                        '" + dep.dep_description + @"'
+                        where Id=" + dep.id + @"
                         ";
                 DataTable table = new DataTable();
                 using (var con = new SqlConnection(ConfigurationManager.
@@ -95,7 +95,7 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        delete dbo.Departamente 
+                        delete dbo.departmensts
                         where Id=" + id + @"
                         ";
                 DataTable table = new DataTable();

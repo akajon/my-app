@@ -7,19 +7,19 @@ namespace WebApplication1.Models
 {
     public class Angajat
     {
-        public int CNP { get; set; }
-        public string Nume { get; set; }
-        public string Prenume { get; set; }
-        public string Poza { get; set; }
-        public string NR_Legitimatie { get; set; }
-        public string Departament { get; set; }
-        public string Orar_Start { get; set; }
-        public string Orar_End { get; set; }
-        public string Cod_Securitate { get; set; }
-        public string Numar_Inregistrari { get; set; }
-        public string Acces { get; set; }
-        public string CNP_Acordare_Drept { get; set; }
-        public string Data_Acordare_Drept { get; set; }
+        public int cnp { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public string pic { get; set; }
+        public string legetimation_number { get; set; }
+        public string department { get; set; }
+        public string schedule_start { get; set; }
+        public string schedule_end { get; set; }
+        public string security_code { get; set; }
+        public string registration_number { get; set; }
+        public string access { get; set; }
+        public string cnp_access_granted { get; set; }
+        public string data_access_granted { get; set; }
 
 
     }

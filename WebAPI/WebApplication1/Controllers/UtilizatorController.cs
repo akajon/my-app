@@ -8,16 +8,23 @@ using WebApplication1.Models;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
 {
     public class UtilizatorController : ApiController
     {
+        public bool GetAuthentication(string UsernameToReceive,string PasswordToReceive) {
+
+            return true;
+        }
+
+
         public HttpResponseMessage Get()
         {
             string query = @"
-                    select Id, User, Parola from
-                    dbo.Utilizatori
+                    select id, coordinator_name, username, passwd from      
+                    dbo.users
                     ";
             DataTable table = new DataTable();
             using (var con = new SqlConnection(ConfigurationManager.
@@ -26,8 +33,7 @@ namespace WebApplication1.Controllers
             using (var da = new SqlDataAdapter(cmd))
             {
                 cmd.CommandType = CommandType.Text;
-                //da.Fill(table);
-
+                da.Fill(table);
             }
             return Request.CreateResponse(HttpStatusCode.OK, table);
 
@@ -37,11 +43,12 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        insert into dbo.Utilizatori values
+                        insert into dbo.users values
                         (
-                        '" + dep.Id + @"'
-                        '" + dep.User + @"'
-                        '" + dep.Parola + @"'
+                        '" + dep.id + @"'
+                        '" + dep.coordinator_name + @"'
+                        '" + dep.username + @"'
+                        '" + dep.passwd + @"'
                         )
                         ";
                 DataTable table = new DataTable();
@@ -67,9 +74,9 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        update dbo.Utilizatori set User=
-                        '" + dep.User + @"'
-                        where Id=" + dep.Id + @"
+                        update dbo.users set User=
+                        '" + dep.username + @"'
+                        where Id=" + dep.id + @"
                         ";
                 DataTable table = new DataTable();
                 using (var con = new SqlConnection(ConfigurationManager.
@@ -94,7 +101,7 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        delete dbo.Utilizatori 
+                        delete dbo.users 
                         where Id =" + id + @"
                         ";
                 DataTable table = new DataTable();

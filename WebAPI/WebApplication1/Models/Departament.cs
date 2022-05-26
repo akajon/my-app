@@ -7,9 +7,9 @@ namespace WebApplication1.Models
 {
     public class Departament
     {
-        public int Id { get; set; }
-        public string CNP_Sef { get; set; }
-        public string Denumire { get; set; }
-        public string Descriere { get; set; }
+        public int id { get; set; }
+        public string usr_id { get; set; }
+        public string dep_name { get; set; }
+        public string dep_description { get; set; }
     }
 }
