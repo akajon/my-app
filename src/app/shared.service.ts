@@ -8,9 +8,8 @@ import { ApiEndPoints } from './core/models/Enums/ApiEndPoints';
   providedIn: 'root'
 })
 export class SharedService {
-//readonly APIUrl = "https://ipproject-api.azurewebsites.net/api";
-readonly baseUrl = "http://localhost:64637/api";
-readonly PhotoUrl = "https://ipproject-api.azurewebsites.net/Poze";
+readonly baseUrl = "https://ipproject-api.azurewebsites.net/api";
+// readonly baseUrl = "http://localhost:64637/api";
 private readonly headers = new HttpHeaders({
   'Content-Type' : 'application/json',
 });
