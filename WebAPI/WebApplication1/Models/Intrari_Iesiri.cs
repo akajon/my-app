@@ -7,8 +7,8 @@ namespace WebApplication1.Models
 {
     public class Intrari_Iesiri
     {
-        public int CNP { get; set; }
-        public string Data_Intrare { get; set; }
-        public string Data_Iesire { get; set; }
+        public int cnp { get; set; }
+        public string entry_date { get; set; }
+        public string exit_date { get; set; }
     }
 }

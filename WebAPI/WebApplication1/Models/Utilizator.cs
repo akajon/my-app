@@ -7,8 +7,9 @@ namespace WebApplication1.Models
 {
     public class Utilizator
     {
-        public int Id { get; set; }
-        public string User { get; set; }
-        public string Parola { get; set; }
+        public int id { get; set; }
+        public string coordinator_name { get; set; }
+        public string username { get; set; }
+        public string passwd { get; set; }
     }
 }

@@ -14,7 +14,7 @@ export class ListaComponent {
   searchName:string='';
   ModalTitle:string='';
   ActivateAddEmp:boolean=false;
-  
+  dropdown: boolean[] = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
   constructor(private service:SharedService) {
 
    }
@@ -34,6 +34,14 @@ export class ListaComponent {
           alert(data.toString());
           this.refreshEmpList(this);
         })
+    }
+  }
+
+  dropDown(i: number){
+    if(this.dropdown[i] ==true){
+      this.dropdown[i] =false;
+    }else{
+      this.dropdown[i]=true;
     }
   }
 

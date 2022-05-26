@@ -85,3 +85,7 @@ C:\Users\ABC\ProiectIP\api\WebAPI\WebApplication1\obj\Debug\WebApplication1.pdb
 C:\Users\ABC\ProiectIP\api\WebAPI\WebApplication1\bin\System.Web.Cors.dll
 C:\Users\ABC\ProiectIP\api\WebAPI\WebApplication1\bin\System.Web.Http.Cors.dll
 C:\Users\ABC\ProiectIP\api\WebAPI\WebApplication1\bin\System.Web.Http.Cors.xml
+C:\Users\ABC\ProiectIP\api\WebAPI\WebApplication1\bin\EntityFramework.dll
+C:\Users\ABC\ProiectIP\api\WebAPI\WebApplication1\bin\EntityFramework.SqlServer.dll
+C:\Users\ABC\ProiectIP\api\WebAPI\WebApplication1\bin\EntityFramework.xml
+C:\Users\ABC\ProiectIP\api\WebAPI\WebApplication1\bin\EntityFramework.SqlServer.xml
