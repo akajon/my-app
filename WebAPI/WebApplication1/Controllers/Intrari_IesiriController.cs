@@ -16,8 +16,8 @@ namespace WebApplication1.Controllers
         public HttpResponseMessage Get()
         {
             string query = @"
-                    select CNP, Data_Intrare, Data_Iesire from
-                    dbo.Intrari_Iesiri
+                    select cnp, entry_date, exit_date from
+                    dbo.entries_exits
                     ";
             DataTable table = new DataTable();
             using (var con = new SqlConnection(ConfigurationManager.
@@ -37,11 +37,11 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        insert into dbo.Intrari_Iesiri values
+                        insert into dbo.entries_exits values
                         (
-                        '" + dep.CNP + @"'
-                        '" + dep.Data_Intrare + @"'
-                        '" + dep.Data_Iesire + @"'
+                        '" + dep.cnp + @"'
+                        '" + dep.entry_date + @"'
+                        '" + dep.exit_date + @"'
                         )
                         ";
                 DataTable table = new DataTable();
@@ -67,10 +67,10 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        update dbo.Intrari_Iesiri set 
-                        Data_Intrare= '" + dep.Data_Intrare + @"'
-                        ,Data_Iesire='" + dep.Data_Iesire + @"'
-                        where CNP=" + dep.CNP + @"
+                        update dbo.entries_exits set 
+                        Data_Intrare= '" + dep.entry_date + @"'
+                        ,Data_Iesire='" + dep.exit_date + @"'
+                        where CNP=" + dep.cnp + @"
                         ";
                 DataTable table = new DataTable();
                 using (var con = new SqlConnection(ConfigurationManager.
@@ -95,7 +95,7 @@ namespace WebApplication1.Controllers
             try
             {
                 string query = @"
-                        delete dbo.Intrari_Iesiri 
+                        delete dbo.entries_exits 
                         where CNP=" + cnp + @"
                         ";
                 DataTable table = new DataTable();
