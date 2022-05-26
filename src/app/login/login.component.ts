@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent{
 
-  constructor() { }
+usernameToSend: string="";
+passwordToSend: string="";
 
-  ngOnInit(): void {
+  constructor(private sharedService: SharedService) { }
+
+  ngOnInit(){
+
+
+
   }
+
+authenticate(){
+
+this.sharedService.sendAuthenticate(this.usernameToSend,this.passwordToSend).subscribe(result=>{
+  console.log(result);
+})
+
+}
 
 }

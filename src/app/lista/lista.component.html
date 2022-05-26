@@ -1,3 +1,11 @@
+<form class="form-inline md-form form-sm">
+  <!--<mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>-->
+  <svg class="svg-icon search-icon" aria-labelledby="title desc" width="16" height="16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7">
+    <title id="title">Search Icon</title><desc id="desc">A magnifying glass icon.</desc>
+    <g class="search-path" fill="none" stroke="#848F91"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g>
+  </svg>
+  <input class="form-control form-control-sm ml-3 w-75" id="search-field" type="text" placeholder="Search" aria-label="Search" [ngModel]="searchName" (change)="refreshEmpList(this)">
+</form>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary float-right" 
 data-toggle="modal" data-target="#exampleModal"
