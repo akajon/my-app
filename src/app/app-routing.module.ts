@@ -7,9 +7,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ListaComponent } from './lista/lista.component';
 
 const routes: Routes = [
-{ path: '', component: HomeComponent},
+{ path: '', component: LoginComponent},
 { path: 'navigation', component: NavigationComponent},
-{ path: 'login', component: LoginComponent},
+{ path: 'home', component: HomeComponent},
 { path: 'register', component: RegisterComponent},
 { path: 'lista', component: ListaComponent},
 ];
