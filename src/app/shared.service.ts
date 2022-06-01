@@ -9,8 +9,8 @@ import { EmployeeDetailsDTO } from './core/models/EmployeeDetailsDTO';
   providedIn: 'root'
 })
 export class SharedService {
-//readonly baseUrl = "https://ipproject-api.azurewebsites.net/api";
-readonly baseUrl = "http://localhost:64637/api";
+readonly baseUrl = "https://ipproject-api.azurewebsites.net/api";
+//readonly baseUrl = "http://localhost:64637/api";
 private readonly headers = new HttpHeaders({
   'Content-Type' : 'application/json',
 });
