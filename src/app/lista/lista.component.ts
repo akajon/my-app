@@ -17,6 +17,14 @@ export class ListaComponent {
   ModalTitle:string='';
   ActivateAddEmp:boolean=false;
   dropdown: boolean[] = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+  cnpToInsert="";
+  firstNameToInsert="";
+  lastNameToInsert="";
+  nrLegitimatieToInsert="";
+  inHourToInsert="";
+  outHourToInsert="";
+  securityCodeToInsert="";
+  registerCpdeToInsert="";
   constructor(private service:SharedService) {
 
    }
@@ -37,6 +45,14 @@ export class ListaComponent {
           this.refreshEmpList(this);
         })
     }
+  }
+
+  createEmployee(){
+    this.service.createNewEmployee(this.cnpToInsert, this.firstNameToInsert, this.lastNameToInsert, this.nrLegitimatieToInsert,
+      this.inHourToInsert, this.outHourToInsert, this.securityCodeToInsert, this.registerCpdeToInsert).subscribe(data=>{
+        alert(data.toString());
+    })
+
   }
 
   dropDown(i: number){

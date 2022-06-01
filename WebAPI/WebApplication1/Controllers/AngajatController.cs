@@ -30,7 +30,7 @@ namespace WebApplication1.Controllers
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 EmployeeDTO student = new EmployeeDTO();
-                student.Id = Convert.ToInt64(table.Rows[i]["cnp"]);
+                student.Id = table.Rows[i]["cnp"].ToString();
                 student.Nume = table.Rows[i]["first_name"].ToString();
                 student.Prenume = table.Rows[i]["last_name"].ToString();
                 studentList.Add(student);
@@ -119,6 +119,40 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, table);
 
         }
+
+    [Route("api/Angajat/createNew")]
+    [AcceptVerbs("GET")]
+    public string CreateNewEmployee(string Cnp, string Prenume, string Nume, string nrLegitimatie, string OraIntrare, string OraIesire, string CodSecuritate, string CodInregistrare) {
+      try {
+        string query = @"insert into dbo.employees (cnp, first_name, last_name, legitimation_number, department_id, schedule_start
+                          ,schedule_end, security_code, registration_number, date_access_granted, access) values(
+                          '" + Cnp + "'," +
+                          "'"+ Prenume +"'," +
+                          "'"+ Nume +"'," +
+                          "'"+ nrLegitimatie +"'," +
+                          "1,"+
+                          "'"+ OraIntrare +"'," +
+                          "'"+ OraIesire +"'," +
+                          "'"+ CodSecuritate +"'," +
+                          "'"+ CodInregistrare +"', GETDATE(), 0)";
+        DataTable table = new DataTable();
+        using (var con = new SqlConnection(ConfigurationManager.
+            ConnectionStrings["AngajatAppDB"].ConnectionString))
+        using (var cmd = new SqlCommand(query, con))
+        using (var da = new SqlDataAdapter(cmd))
+        {
+          cmd.CommandType = CommandType.Text;
+          da.Fill(table);
+
+        }
+        return "Added Successfully!!";
+      }
+      catch (Exception)
+      {
+        return "Failed to Add!!";
+      }
+    }
+
         public string Post(Angajat dep)
         {
             try
@@ -185,6 +219,9 @@ namespace WebApplication1.Controllers
                 return "Failed to Update!!";
             }
         }
+
+        
+
         [Route("api/Angajat/delete")]
         public string DeleteEmployee(string IdCNP)
         {

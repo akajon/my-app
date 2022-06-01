@@ -9,8 +9,8 @@ import { EmployeeDetailsDTO } from './core/models/EmployeeDetailsDTO';
   providedIn: 'root'
 })
 export class SharedService {
-readonly baseUrl = "https://ipproject-api.azurewebsites.net/api";
-//readonly baseUrl = "http://localhost:64637/api";
+//readonly baseUrl = "https://ipproject-api.azurewebsites.net/api";
+readonly baseUrl = "http://localhost:64637/api";
 private readonly headers = new HttpHeaders({
   'Content-Type' : 'application/json',
 });
@@ -29,7 +29,7 @@ private readonly headers = new HttpHeaders({
     return this.httpClient.put(this.baseUrl+'/Angajat',val);
   }
 
-  deleteEmployee(val:number){
+  deleteEmployee(val:any){
     return this.httpClient.delete(this.baseUrl+`/Angajat/delete?IdCNP=${val}`);
   }
 
@@ -37,7 +37,11 @@ private readonly headers = new HttpHeaders({
     return this.httpClient.post(this.baseUrl+'/Angajat/SaveFile',val);
   }
 
-  GetEmployeeDetails(val: number):Observable<any>{
+  createNewEmployee(cnp:string, prenume:string, nume:string, nrLeg: string, oraIntrare: string, oraIesire: string, codSecuritate:string, codInregistrare: string):Observable<any>{
+    return this.httpClient.get(this.baseUrl+`/Angajat/createNew?Cnp=${cnp}&Prenume=${prenume}&Nume=${nume}&nrLegitimatie=${nrLeg}&OraIntrare=${oraIntrare}&OraIesire=${oraIesire}&CodSecuritate=${codSecuritate}&CodInregistrare=${codInregistrare}`);
+  }
+
+  GetEmployeeDetails(val: any):Observable<any>{
     return this.httpClient.get(this.baseUrl+`/Angajat/details?idAngajat=${val}`);
   }
 

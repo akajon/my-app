@@ -26,10 +26,15 @@ data-backdrop="static" data-keyboard="false"
           </button>
         </div>
         <div class="modal-body" *ngIf="ActivateAddEmp">
-          <button class="close" 
-          (click)="closeAddPopup()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          CNP: <input type="text" [(ngModel)]="cnpToInsert"><br>
+          Prenume: <input type="text" [(ngModel)]="firstNameToInsert"><br>
+          Nume: <input type="text" [(ngModel)]="lastNameToInsert"><br>
+          Numar Legitimatie: <input type="text" [(ngModel)]="nrLegitimatieToInsert"><br>
+          Ora Intrare (xx:xx): <input type="text" [(ngModel)]="inHourToInsert"><br>
+          Ora Iesire (xx:xx): <input type="text" [(ngModel)]="outHourToInsert"><br>
+          Cod Securitate: <input type="text" [(ngModel)]="securityCodeToInsert"><br>
+          Cod Inregistrare: <input type="text" [(ngModel)]="registerCpdeToInsert"><br>
+          <button (click)="createEmployee()">Creare Angajat</button>
         </div>
       </div>
     </div>
