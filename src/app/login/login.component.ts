@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeDetailsDTO } from '../core/models/EmployeeDetailsDTO';
 import { SharedService } from '../shared.service';
 
@@ -12,7 +13,7 @@ export class LoginComponent{
 usernameToSend: string="";
 passwordToSend: string="";
 
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService,private route: Router) { }
 
   ngOnInit(){
 
@@ -26,7 +27,7 @@ this.sharedService.sendAuthenticate(this.usernameToSend,this.passwordToSend).sub
   console.log(result);
   if(result == true){
 
-    window.location.href = 'http://localhost:4200/lista';
+    this.route.navigate(['/lista']);
 
   }
 })
