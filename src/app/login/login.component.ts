@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeDetailsDTO } from '../core/models/EmployeeDetailsDTO';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -23,6 +24,11 @@ authenticate(){
 
 this.sharedService.sendAuthenticate(this.usernameToSend,this.passwordToSend).subscribe(result=>{
   console.log(result);
+  if(result == true){
+
+    window.location.href = 'http://localhost:4200/lista';
+
+  }
 })
 
 }

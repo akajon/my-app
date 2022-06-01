@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaComponent } from './lista/lista.component';
 import { SharedService } from './shared.service';
+import { DetailsComponent } from './entry-details/entry-details.component';
   
 
 @NgModule({
@@ -21,6 +22,7 @@ import { SharedService } from './shared.service';
     RegisterComponent,
     NavigationComponent,
     ListaComponent,
+    DetailsComponent
 
   ],
   imports: [

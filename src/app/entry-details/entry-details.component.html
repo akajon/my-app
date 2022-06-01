@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>
+            Data
+            </td>
+            <td>
+            Ora Intrare
+            </td>
+            <td>
+            Ora Iesire
+            </td>
+        </tr>
+    </thead>
+    <tbody *ngFor="let dataItem of entryDetails; let i= index">
+        <tr>
+            <td>
+                {{dataItem.zi}}.{{dataItem.luna}}.2022
+            </td>
+            <td>
+                {{dataItem.oraIntrare}}
+            </td>
+            <td>
+                {{dataItem.oraIesire}}
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -37,6 +37,66 @@ namespace WebApplication1.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.OK, studentList);
         }
+
+    [Route("api/Angajat/entry/details")]
+    [AcceptVerbs("GET")]
+    public HttpResponseMessage GetEntryDetails(Int64 idAngajat) {
+        string query = @"select cnp, entry_date, exit_date from dbo.entries_exits where cnp like '%" + idAngajat + "%'";
+        DataTable table = new DataTable();
+        using (var con = new SqlConnection(ConfigurationManager.
+            ConnectionStrings["AngajatAppDB"].ConnectionString))
+        using (var cmd = new SqlCommand(query, con))
+        using (var da = new SqlDataAdapter(cmd))
+        {
+          cmd.CommandType = CommandType.Text;
+          da.Fill(table);
+
+        }
+        List<EntryDetailsDTO> studentList = new List<EntryDetailsDTO>();
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+        DateTime ziIntrare;
+        DateTime ziIesire;
+        EntryDetailsDTO student = new EntryDetailsDTO();
+          ziIntrare = (DateTime)table.Rows[i]["entry_date"];
+          ziIesire = (DateTime)table.Rows[i]["exit_date"];
+          student.zi = ziIntrare.Day.ToString();
+          student.luna = ziIesire.Month.ToString();
+          student.oraIesire = ziIesire.Hour.ToString()+":"+ziIesire.Minute.ToString()+":"+ziIesire.Second.ToString();
+          student.oraIntrare = ziIntrare.Hour.ToString()+":"+ziIntrare.Minute.ToString()+":"+ziIntrare.Second.ToString();
+          studentList.Add(student);
+        }
+        return Request.CreateResponse(HttpStatusCode.OK, studentList);
+    }
+
+
+    [Route("api/Angajat/details")]
+    [AcceptVerbs("GET")]
+    public HttpResponseMessage GetDetailsForAngajat(Int64 idAngajat) {
+        string query = @"select cnp, legitimation_number, schedule_start, schedule_end, registration_number, cnp_access_granted from dbo.employees where cnp like '%" + idAngajat + "%'";
+        DataTable table = new DataTable();
+        using (var con = new SqlConnection(ConfigurationManager.
+            ConnectionStrings["AngajatAppDB"].ConnectionString))
+        using (var cmd = new SqlCommand(query, con))
+        using (var da = new SqlDataAdapter(cmd))
+        {
+          cmd.CommandType = CommandType.Text;
+          da.Fill(table);
+
+        }
+        EmployeeDetailsDTO employee = new EmployeeDetailsDTO();
+        if(table.Rows.Count > 0)
+        {
+        employee.Id = Convert.ToInt64(table.Rows[0]["cnp"]);
+        employee.OraIntrare = table.Rows[0]["schedule_start"].ToString();
+        employee.OraIesire = table.Rows[0]["schedule_end"].ToString();
+        employee.CarNumber = table.Rows[0]["registration_number"].ToString();
+        employee.Admin = (table.Rows[0]["cnp_access_granted"] != null && (table.Rows[0]["cnp_access_granted"].ToString() != String.Empty));
+        employee.CNP = table.Rows[0]["cnp"].ToString();
+        employee.NrLegitimatie = table.Rows[0]["legitimation_number"].ToString();
+        }
+        return Request.CreateResponse(HttpStatusCode.OK, employee);
+    }
         // GET: Angajat
         public HttpResponseMessage Get()
         {
@@ -132,8 +192,7 @@ namespace WebApplication1.Controllers
             {
                 string query = @"
                         delete dbo.employees
-                        where CNP=" + IdCNP + @"
-                        ";
+                        where CNP like '%" + IdCNP + "%'";
                 DataTable table = new DataTable();
                 using (var con = new SqlConnection(ConfigurationManager.
                     ConnectionStrings["AngajatAppDB"].ConnectionString))

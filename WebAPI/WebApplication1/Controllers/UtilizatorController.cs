@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -14,11 +14,30 @@ namespace WebApplication1.Controllers
 {
     public class UtilizatorController : ApiController
     {
-        public bool GetAuthentication(string UsernameToReceive,string PasswordToReceive) {
 
-            return true;
-        }
+    [Route("api/Utilizator/login")]
+    [AcceptVerbs("GET")]
+    public bool Login(string user, string parola) {
+          string query = @"
+                        select * from      
+                        dbo.users
+                        where username='" + user + "' and passwd ='" + parola + "'";
+          DataTable table = new DataTable();
+          using (var con = new SqlConnection(ConfigurationManager.
+              ConnectionStrings["AngajatAppDB"].ConnectionString))
+          using (var cmd = new SqlCommand(query, con))
+          using (var da = new SqlDataAdapter(cmd))
+          {
+            cmd.CommandType = CommandType.Text;
+            da.Fill(table);
+          }
+      if (table.Rows.Count > 0)
+      {
+        return true;
+      }
+      return false;
 
+    }
 
         public HttpResponseMessage Get()
         {

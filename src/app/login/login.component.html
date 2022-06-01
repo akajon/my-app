@@ -1,13 +1,7 @@
-<form>
-
     <h1 class="h3 mb-3 fw-normal">Please sign in:</h1>
   
-    <input type="username" class="form-control" id="floatingInput" placeholder="Username" [value]="usernameToSend" >
+    <input type="text" class="form-control" id="floatingInput" placeholder="Username" [(ngModel)]="usernameToSend" >
   
-    <input type="password" class="form-control" placeholder="Password" [value]="passwordToSend">
-  
-    <input type="checkbox" value="remember-me" > Remember me
+    <input type="text" class="form-control" placeholder="Password" [(ngModel)]="passwordToSend">
   
     <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="authenticate()">Sign in</button>
-  
-  </form>

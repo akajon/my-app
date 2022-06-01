@@ -3,13 +3,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { ApiMethodType } from './core/models/Enums/ApiMethodTyoe';
 import { ApiEndPoints } from './core/models/Enums/ApiEndPoints';
+import { EmployeeDetailsDTO } from './core/models/EmployeeDetailsDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
 readonly baseUrl = "https://ipproject-api.azurewebsites.net/api";
-// readonly baseUrl = "http://localhost:64637/api";
+//readonly baseUrl = "http://localhost:64637/api";
 private readonly headers = new HttpHeaders({
   'Content-Type' : 'application/json',
 });
@@ -36,9 +37,17 @@ private readonly headers = new HttpHeaders({
     return this.httpClient.post(this.baseUrl+'/Angajat/SaveFile',val);
   }
 
-  sendAuthenticate(username:string, password:string){
-    return this.httpClient.get(this.baseUrl+`/Utilizator?UsernameToReceive=${username}&PasswordToReceive=${password}`);
+  GetEmployeeDetails(val: number):Observable<any>{
+    return this.httpClient.get(this.baseUrl+`/Angajat/details?idAngajat=${val}`);
   }
+
+  sendAuthenticate(username:string, password:string){
+    return this.httpClient.get(this.baseUrl+`/Utilizator/login?user=${username}&parola=${password}`);
+  }
+  getEmployeeEntryDetails(val: any):Observable<any>{
+    return this.httpClient.get(this.baseUrl+`/Angajat/entry/details?idAngajat=${val}`);
+  }
+
   makeHttpRequest(endpoint: string, apiMethod: ApiMethodType, body?: any): Observable<any> {
 
     const url = this.baseUrl + endpoint;

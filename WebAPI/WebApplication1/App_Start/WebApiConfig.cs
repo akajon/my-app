@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -33,6 +33,9 @@ namespace WebApplication1
             cnn = new SqlConnection(connetionString);
             cnn.Open();
             cnn.Close();
+
+
+            
 
         }
     }

@@ -180,6 +180,7 @@
     <Compile Include="Models\Angajat.cs" />
     <Compile Include="Models\Departament.cs" />
     <Compile Include="Models\EmployeeDTO.cs" />
+    <Compile Include="Models\EntryDetailsDTO.cs" />
     <Compile Include="Models\Intrari_Iesiri.cs" />
     <Compile Include="Models\Utilizator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,6 +194,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Compile Include="Models\EmployeeDetailsDTO.cs" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
